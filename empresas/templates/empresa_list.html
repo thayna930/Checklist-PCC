@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block main %}
+<div class="row">
+    <div class="d-flex align-items-stretch">
+        <div class="d-flex align-items-stretch w-100">
+            <div class="card w-100">
+                <div class="card-body p-4">
+                    <h5 class="card-title fw-semibold mb-4">Lista de Empresas</h5>
+                    {% if user.is_staff %}
+                        <h5 class="card-title fw-semibold mb-4">   <a href="{% url 'empresa_create' %}">Adicionar Empresa</a></h5>
+                    {% endif %}
+                    <div class="table-responsive">
+                        <table class="table text-nowrap mb-0 align-middle">
+                            <thead class="text-dark fs-4">
+                                <tr>
+                                    <th class="border-bottom-0">
+                                        <h6 class="fw-semibold mb-0">Razão Social</h6>
+                                    </th>
+                                    <th class="border-bottom-0">
+                                        <h6 class="fw-semibold mb-0">Email</h6>
+                                    </th>
+                                    <th class="border-bottom-0">
+                                        <h6 class="fw-semibold mb-0">Cidade</h6>
+                                    </th>
+                                    <th class="border-bottom-0">
+                                        <h6 class="fw-semibold mb-0">Estado</h6>
+                                    </th>
+                                    <th class="border-bottom-0">
+                                        <h6 class="fw-semibold mb-0">Telefone</h6>
+                                    </th>
+                                    <th class="border-bottom-0">
+                                        <h6 class="fw-semibold mb-0">Ramo da Empresa</h6>
+                                    </th>
+                                    <th class="border-bottom-0"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for empresa in empresas %}
+                                <tr>
+                                    <td class="border-bottom-0">{{ empresa.razao_social }}</td>
+                                    <td class="border-bottom-0">{{ empresa.email }}</td>
+                                    <td class="border-bottom-0">{{ empresa.cidade }}</td>
+                                    <td class="border-bottom-0">{{ empresa.estado }}</td>
+                                    <td class="border-bottom-0">{{ empresa.telefone }}</td>
+                                    <td class="border-bottom-0">{{ empresa.ramo_empresa }}</td>
+                                    <td class="border-bottom-0">
+                                        <a href="{% url 'empresa_detail' empresa.pk %}" class="btn btn-primary">Detalhes</a>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock main %}

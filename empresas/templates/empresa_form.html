@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block main %}
+<div class="card-body">
+        <form method="post">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="razao_social" class="form-label">Razão Social</label>
+                <input type="text" class="form-control" id="razao_social" name="razao_social" value="{{ form.razao_social.value }}">
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" name="email" value="{{ form.email.value }}">
+            </div>
+            <div class="mb-3">
+                <label for="cidade" class="form-label">Cidade</label>
+                <input type="text" class="form-control" id="cidade" name="cidade" value="{{ form.cidade.value }}">
+            </div>
+            <div class="mb-3">
+                <label for="estado" class="form-label">Estado</label>
+                <input type="text" class="form-control" id="estado" name="estado" value="{{ form.estado.value }}">
+            </div>
+            <div class="mb-3">
+                <label for="telefone" class="form-label">Telefone</label>
+                <input type="text" class="form-control" id="telefone" name="telefone" value="{{ form.telefone.value }}">
+            </div>
+            <div class="mb-3">
+                <label for="ramo_empresa" class="form-label">Ramo da Empresa</label>
+                <input type="text" class="form-control" id="ramo_empresa" name="ramo_empresa" value="{{ form.ramo_empresa.value }}">
+            </div>
+            <button type="submit" class="btn btn-primary">Salvar</button>
+        </form>
+    </div>
+{% endblock main %}

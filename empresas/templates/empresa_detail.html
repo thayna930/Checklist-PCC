@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block main %}    
+    <script>
+        function confirmDelete() {
+            if (confirm("Tem certeza que deseja excluir esta empresa?")) {
+                document.getElementById("delete-form").submit();
+            }
+        }
+    </script>
+    <h1>{{ empresa.razao_social }}</h1>
+    <p>Email: {{ empresa.email }}</p>
+    <p>Cidade: {{ empresa.cidade }}</p>
+    <p>Estado: {{ empresa.estado }}</p>
+    <p>Telefone: {{ empresa.telefone }}</p>
+    <p>Ramo da Empresa: {{ empresa.ramo_empresa }}</p>
+    {% if user.is_staff %}
+    <h5 class="card-title fw-semibold mb-4">   <a href="{% url 'empresa_update' empresa.pk %}">Editar</a></h5>
+    <button class="card-title fw-semibold mb-4" onclick="confirmDelete()">Excluir</button>
+    <form id="delete-form" action="{% url 'empresa_delete' empresa.pk %}" method="post" style="display: none;">
+        {% csrf_token %}
+    </form>
+    {% endif %}
+
+{% endblock main %}
